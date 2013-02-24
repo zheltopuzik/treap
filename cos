@@ -1,0 +1,18 @@
+package oop1;
+
+import java.util.ArrayList;
+
+public class Cos implements Function
+{
+
+  public NumericToken apply(ArrayList<NumericToken> variables)
+	{
+		return new NumericToken ("fl", Math.cos((Double)variables.get(0).getValue()));
+	}
+
+	public String getName()
+	{
+		return "cos";
+	}
+	
+}
