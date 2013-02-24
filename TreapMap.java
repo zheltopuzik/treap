@@ -7,12 +7,7 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 {
 	
 	private static Random random = new Random();
-	
-	public interface PriorityProvider
-	{
-		int nextPriotity();
-	}
-	
+		
 	private int nextPriority()
 	{
 		return random.nextInt();
@@ -243,7 +238,6 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 		// TODO Auto-generated method stub
 		throw new RuntimeException("Метод не определен");
 	}
-
 
 
 	@Override
