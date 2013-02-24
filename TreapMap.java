@@ -3,29 +3,21 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implements Map<K, V>
+public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 {
-  
-	private Integer priority;
+	
 	private static Random random = new Random();
 	
-	public void putNextPriority(int newPriority)
+	public interface PriorityProvider
 	{
-		priority = newPriority;
-	}
-		
-	public int getNextPriority()
-	{
-		if (priority == null)
-			return random.nextInt();
-		else
-			{
-				int k = priority;
-				priority = null;
-				return k;
-			}
+		int nextPriotity();
 	}
 	
+	private int nextPriority()
+	{
+		return random.nextInt();
+	}
+			
 	private class TreapNode
 	{
 		 TreapNode left; 
@@ -119,7 +111,8 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public boolean containsKey(Object key)
 	{
-		// TODO Auto-generated method stub
+		if (search(root, key) != null)
+			return true;
 		return false;
 	}
 
@@ -128,8 +121,7 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public boolean containsValue(Object value)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		throw new RuntimeException("Метод не определен");
 	}
 
 
@@ -137,8 +129,7 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Метод не определен");
 	}
 
 
@@ -157,10 +148,7 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public boolean isEmpty()
 	{
-		if (root != null)
-			return false;
-		else
-			return true;
+		return root == null;
 	}
 
 
@@ -168,8 +156,7 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public Set<K> keySet()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Метод не определен");
 	}
 
 
@@ -177,20 +164,26 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public V put(K key, V value)
 	{	
+
 		TreapNode searchNode = search(root, key);
 		if (searchNode != null)
-			return searchNode.value;
+		{
+			V returnValue = searchNode.value;
+			searchNode.value = value;
+			return returnValue;
+		}
 		
 		TreapNode newNode = new TreapNode();
 		newNode.key = key;
 		newNode.value = value;
-		newNode.priority = getNextPriority();	
+		newNode.priority = nextPriority();	
 		newNode.left = newNode.right = null;
 		
 		NodesAfterSplit splitTree = split (root, key);	
 		
 		root = merge (merge (splitTree.l, newNode), splitTree.r);
 
+		
 		return value;
 	}
 
@@ -199,8 +192,7 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m)
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 
@@ -246,10 +238,10 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	
 
 	@Override
-	public int size()
+	public int size() 
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		throw new RuntimeException("Метод не определен");
 	}
 
 
@@ -257,7 +249,6 @@ public class TreapMap<K extends Comparable<K>, V extends Comparable<V>> implemen
 	@Override
 	public Collection<V> values()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Метод не определен");
 	}		
 }
