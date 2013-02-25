@@ -116,7 +116,7 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 	@Override
 	public boolean containsValue(Object value)
 	{
-		throw new RuntimeException("Метод не определен");
+		throw new UnsupportedOperationException("Метод не определен");
 	}
 
 
@@ -124,7 +124,7 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet()
 	{
-		throw new RuntimeException("Метод не определен");
+		throw new UnsupportedOperationException("Метод не определен");
 	}
 
 
@@ -151,7 +151,7 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 	@Override
 	public Set<K> keySet()
 	{
-		throw new RuntimeException("Метод не определен");
+		throw new UnsupportedOperationException("Метод не определен");
 	}
 
 
@@ -236,13 +236,13 @@ public class TreapMap<K extends Comparable<K>, V> implements Map<K, V>
 	public int size() 
 	{
 		// TODO Auto-generated method stub
-		throw new RuntimeException("Метод не определен");
+		throw new UnsupportedOperationException("Метод не определен");
 	}
 
 
 	@Override
 	public Collection<V> values()
 	{
-		throw new RuntimeException("Метод не определен");
+		throw new UnsupportedOperationException("Метод не определен");
 	}		
 }
