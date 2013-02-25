@@ -47,7 +47,7 @@ public class TreapMapTest extends TestCase
 				
 	}
 		
-	public void test3() throws RuntimeException
+	public void test3() throws UnsupportedOperationException
 	{
 		TreapMap<Integer, Double> currentTreapMap = new TreapMap<Integer, Double>();
 		try
@@ -69,7 +69,7 @@ public class TreapMapTest extends TestCase
 			assertNull (currentTreapMap.get(5));
 
 		}
-		catch (RuntimeException msg)
+		catch (UnsupportedOperationException msg)
 		{
 			System.out.println("Exception: " + msg);
 		}
